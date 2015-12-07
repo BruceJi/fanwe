@@ -1,0 +1,144 @@
+{include file="inc/header.html"} 
+<script type="text/javascript">
+	var ROOT = '{$APP_ROOT}/keupload.php';
+</script>
+<?php
+
+	$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/project_add.css";
+	$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_publish.js";
+	$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_publish.js";
+	$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajaxupload.js";
+	$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+	$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<script type="text/javascript">
+    var ROOT = '{$APP_ROOT}/m.php';
+    var VAR_MODULE = "m";
+    var VAR_ACTION = "a";
+    var WEB_SESSION_ID = '<?php echo es_session::id(); ?>';
+    var EMOT_URL = '{$APP_ROOT}/public/emoticons/';
+    var MAX_FILE_SIZE = "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+    var UPLOAD_URL ='{$APP_ROOT}/m.php?m=File&a=do_upload&upload_type=0&dir=image' ;
+	var UPLOAD_SWF='{$TMPL}/js/plupload/Moxie.swf';
+	var UPLOAD_XAP='{$TMPL}/js/plupload//Moxie.xap';
+	var ALLOW_IMAGE_EXT= "gif,jpg,jpeg,png,bmp";
+	var MAX_IMAGE_SIZE= "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+	function get_file_fun(name){
+    		$("#"+name).ui_upload({multi:false,
+		FileUploaded:function(ajaxobj){
+ 				if(ajaxobj.error==1)
+				{
+					$.showErr(ajaxobj.info);
+				}else{
+					$("#"+name+"_url").val(ajaxobj.public_url);
+					$("#"+name+"_image").attr('src',ajaxobj.url);
+ 				}
+			},Error:function(error){
+			$.showErr(error.message);
+ 		}});
+	}
+	
+</script>
+<script type='text/javascript' src='{$APP_ROOT}/admin/public/kindeditor/kindeditor.js'></script>
+<style>
+	.pro_lf{ padding:10px; width:350px; }
+	.hide { height:0;float:none }
+	.setlist{position:relative;}
+	.holder_tip{left:125px}
+	.faq_item1{position:relative;overflow:hidden;padding:4px;}
+	.faq_item1 .holder_tip{left:4px;top:4px;}
+	.xqmain{
+		width:998px; 
+		margin:0 auto;
+		border:1px solid #dedede;
+	}
+	.xqmain_main{padding-bottom:0;}
+</style>
+<div class="blank20"></div>
+<div class="location_box wrap1000">
+	<div class="location f_l">
+		<i class="fl ico loc_ico mr5"></i>
+		<label>您现在的位置：</label><a>推广收益活动</a><em>>></em><a>新增优惠券</a>
+	</div>
+</div>
+<div class="blank10"></div>
+<div class="xqmain xqmain1000">
+	<div class="xqmain_main">	
+		<div class="page_title">
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="deal#addProfit" p="id=$deal_info.id"}">新增收益</a></li>		
+				<li class="current"><a href="{url r="deal#addTicket" p="id=$deal_info.id"}">新增优惠券</a></li>					
+			</ul>
+			<div class="blank0"></div>		
+		</div>
+		<div class="agreementlf f_l">
+			<form id="ticket_form" action="{url r="deal#profitTicketSave"}" method="post">		
+				<div class="pro_msg">{$deal_info.name}</div>		
+				<div class="setlist">
+					<label class="setmid">券的类型:</label>
+		            <select name="ticket_type" id='give_status' class="ui-select field_select small">
+					   <option value="1" >优惠券</option>
+				    </select>
+					<!-- <span class="setmid">元</span>
+					<span class="holder_tip">输入整数,例如：2</span> -->
+					<div class="blank0"></div>
+				</div>
+				<div class="setlist">
+					<label class="setmid">金额</label>
+					<input type="text" class="pro_lf textbox" name="money"  />
+					<span class="holder_tip">输入整数,例如：50</span>
+					<span class="setmid">元</span>
+					<div class="blank0"></div>
+				</div>
+				<div class="setlist">
+					<label class="setmid">发放数量</label>
+					<input type="text" class="pro_lf textbox" name="quantity"  />
+					<span class="holder_tip">输入整数,例如：20</span>
+					<span class="setmid">张</span>
+					<div class="blank0"></div>
+				</div>
+				<div class="setlist">
+					<label class="setmid">使用类型:</label>
+		            <select name="type" id='give_status' class="ui-select field_select small">
+					   <option value="1" >满减优惠</option>
+				    </select>
+					<!-- <span class="setmid">元</span>
+					<span class="holder_tip">输入整数,例如：2</span> -->
+					<div class="blank0"></div>
+				</div>
+		        <div class="setlist">
+					<label class="setmid">优惠内容</label>
+					<input type="text" class="pro_lf textbox" name="value"  />
+					<span class="holder_tip">输入优惠的上限，例如满100优惠，则此处填写100</span>
+					<div class="blank0"></div>
+				</div>
+                <div class="f_l">
+					<label class="setmid"></label>
+					<input type="hidden" name="image" value="{$deal_image.url}" id="image_file_url" />
+					<input type="hidden" name="savenext" value="0" />
+					<div class="ui-button bg_green mr10" rel="gray" id="save_ticket">保存</div>
+					<input type="hidden" value="1" name="ajax" />
+					<input type="hidden" name="id" value="{$deal_info.id}" />
+					<div class="blank15"></div>
+				</div>
+			</form>
+			<div class="blank0"></div>		
+		</div>
+		<div class="blank0"></div>
+	</div>
+	<div class="blank0"></div>
+</div>
+<div class="blank20"></div>
+<script type="text/javascript">
+	$(function(){
+		show_tip();
+		get_file_fun("image_file");
+ 	});
+</script>
+{include file="inc/footer.html"} 
+
+

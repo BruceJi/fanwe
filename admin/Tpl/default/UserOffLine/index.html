@@ -1,0 +1,82 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<include file="Public:new" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<div class="main">
+<div class="main_title">线下充值审核列表</div>
+<div class="blank5"></div>
+<PHP>
+	function status($status){
+		if($status ==1)
+		{
+			$status="未支付";
+		}elseif($status==2){
+			$status="支付待审核";
+		}elseif($status==3){
+			$status="审核成功";
+		}else{
+            $status="撤销";
+	    }
+		return $status;
+	}
+	
+</PHP>
+<script>
+	function pay_type(id)
+	{
+		location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=edit_dsffreezer&id="+id;
+	}
+    function check_status(id){
+        location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=check_status&id="+id;
+    }
+    function cancel_order(id){
+        location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=cancel_order&id="+id;
+    }
+
+</script>
+<form name="search" action="__APP__" method="get">	
+	审核账号：
+		<select name="status">
+			<option value="2"  <if condition="$_REQUEST['status'] eq '2' ">selected="selected"</if>>已经支付待审核</option>
+			<option value="1"  <if condition="$_REQUEST['status'] eq '1' ">selected="selected"</if> >未支付</option>		
+			<option value="3"  <if condition="$_REQUEST['status'] eq '3' ">selected="selected"</if>>通过审核</option>
+			<option value="4"  <if condition="$_REQUEST['status'] eq '4' ">selected="selected"</if>>撤销</option>
+			<!-- <option value="NULL" <if condition="$_REQUEST['status'] eq 'NULL' ">selected="selected"</if>>请选择</option> -->
+		</select>
+        订单ID：
+        <input type="text" class="textbox" name="id" value="" style="width:100px;"> 
+		<input type="hidden" value="UserOffLine" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>	
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="off_line" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}
+			,user_id:会员ID
+			,user_name:汇款人姓名
+			,user_phone:汇款人联系电话
+			,user_account:汇款人账号
+			,user_bank:汇款人银行
+			,amount:汇款金额
+			,create_time|to_date:订单生成时间
+			,status|status:状态" 
+	actionlist="check_status:审核,cancel_order:撤销" /> 
+	
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" /> 

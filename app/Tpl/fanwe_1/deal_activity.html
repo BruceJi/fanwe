@@ -1,0 +1,108 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_show.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_log.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/fancybox.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.fancybox.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_log.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_log.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank0"></div>
+<!--中间开始-->
+<div class="xqmain">
+	<!--中间页面头部start-->	
+	{include file="inc/deal_header.html"}
+	<!--中间页面头部end-->	
+	<div class="xqmain_main">
+		<!--左start-->
+		<div class="xqmain_left">
+			<div class="referrals_list">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table">
+					<thead>
+						<tr>
+							<th>券的编号</th>
+							<th>券的类型</th>
+							<th>金额</th>
+							<th>剩余数量</th>
+							<th>使用类型</th>
+							<th>使用内容</th>	
+							<th>操作</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{if $ticket_list}
+						{foreach from=$ticket_list item=ticket}
+						<tr>
+							<td>{$ticket.id}</td>
+							<td>{if $ticket.ticket_type eq 0}赠金券{else}代金券{/if}</td>
+							<td>{$ticket.money}</td>
+							<td>{$ticket.rest_quantity}</td>
+							<td>{if $ticket.type eq 0}无条件使用{else}满减优惠{/if}</td>
+							<td>满{$ticket.value}减{$ticket.money}</td>
+  						    <!--加入活动时间的限制-->
+							<td>{if $ticket.rest_quantity lt 0}无法领取{else}<a href="{url r="deal#getTicket" p="id=$ticket.id"}">领取</a>{/if}</td>
+						</tr>
+						{/foreach}
+						{else}
+						<tr><td colspan="10">还没有任何可领取的优惠券活动</td></tr>
+						{/if}
+					</tbody>
+				</table>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>固定收益(元)</th>
+							<th>比例收益</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						{if $profit_list}
+						{foreach from=$profit_list item=profit}
+						<tr>
+							<td>{$profit.id}</td>
+							<td>{$profit.fixed_gain}</td>
+							<td>{$profit.rate_gain}</td>
+							<td>{if $profit.profit_status eq 1}活动进行中{else}活动结束{/if}</td>
+						</tr>
+						{/foreach}
+						{else}
+						<tr><td colspan="6">还没有任何邀请记录</td></tr>
+						{/if}
+					</tbody>
+				</table>
+				{if $referrals_list}
+				<div class="blank20"></div>
+				<div class="pages">{$pages}</div>
+				<div class="blank20"></div>
+				{/if}
+			</div>
+		</div>
+		<!--左end-->
+		{if $deal_info.type eq 0 }
+			{include file="inc/deal_right.html"}
+		{/if}
+		{if $deal_info.type eq 3 }
+			{include file="inc/deal_right.html"}
+		{/if}
+		{if $deal_info.type eq 4 }
+			{include file="inc/deal_right.html"}
+		{/if}
+		{if $deal_info.type eq 1}
+			{include file="inc/deal_investor_right.html"}
+		{/if}
+		<div class="blank0"></div>
+	</div>
+</div>
+<!--中间结束-->
+<div id="gotop" style="display: block;z-index:99;"></div>
+<div class="blank0"></div>
+{include file="inc/footer.html"} 

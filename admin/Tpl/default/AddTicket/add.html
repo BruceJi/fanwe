@@ -1,0 +1,105 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<include file="Public:header" />
+<script type="text/javascript">
+	function init_port()
+	{
+		var is_ssl = $("select[name='is_ssl']").val();
+		if(is_ssl == '1')
+		{
+			$("input[name='smtp_port']").val("465");
+		}
+		else
+		{
+			$("input[name='smtp_port']").val("25");
+		}
+	}
+	$(document).ready(function(){
+		$("select[name='is_ssl']").bind("change",function(){
+			init_port();
+		});
+		init_port();
+	});
+	
+</script>
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("AddTicket/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">券的类型:</td>
+		<td class="item_input">
+            <input type="radio" class="ticket_type" name="type" value="0" checked="checked">赠金券
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">券的金额:</td>
+		<td class="item_input"><input type="text" class="ticket_money" name="money" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">发行券的数量:</td>
+		<td class="item_input"><input type="text" class="ticket_amount" name="amount" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">券的有效天数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="use_time" value="0" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">使用类型:</td>
+		<td class="item_input">
+			<select name="use_type">
+				<option value="0">无条件</option>
+			</select>
+		</td>
+	</tr> 	
+    <tr>
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<lable>不可用<input type="radio" name="status" value="0" /></lable>
+		</td>
+	</tr>
+    <tr>
+      <td class="item_title">活动开始时间:</td>
+      <td class="item_input">
+			<input type="text" class="textbox require" name="start_time" id="start_time" value="{:to_date(get_gmtime())}" onfocus="this.blur(); return showCalendar('start_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_send_time');" />
+			<input type="button" class="button" id="btn_send_time" value="{%SELECT_TIME}" onclick="return showCalendar('start_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_send_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#start_time').val('');" />	
+		</td>
+    </tr>
+     <tr>
+      <td class="item_title">活动结束时间:</td>
+      <td class="item_input">
+			<input type="text" class="textbox require" name="end_time" id="end_time" value="{:to_date(get_gmtime())}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_send_time');" />
+			<input type="button" class="button" id="btn_send_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_send_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />	
+		</td>
+    </tr>
+    <tr>
+		<td class="item_title">激活券的金额:</td>
+		<td class="item_input"><input type="text" class="textbox" name="ticket_active"  /></td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="AddTicket" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert_ticket" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

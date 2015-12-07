@@ -1,0 +1,17 @@
+body{font-family:"Microsoft YaHei";color:#333;}
+.ui_wrap{font-size:12px;width:860px;border:1px solid #ddd;border-width:1px 0px;padding:45px 25px;float:left;}
+.ui_wrap .left{padding:0px 10px;width:427px;height:690px;border:2px solid #ddd;float:left;border-radius:10px;margin-right:25px;}
+.ui_wrap .left .img{width:407px;height:89px; margin:25px auto;}
+.ui_wrap .right .img{width:312px;height:89px; margin:25px auto;}
+.ui_wrap .title span{font-size:14px;padding:0px 29px;}
+.ui_wrap .title{height:26px;}
+.ui_wrap .right .title span{padding:0px 33px;}
+.ui_wrap .ui_rule p{height:25px;border-top:1px dotted #ccc;}
+.ui_wrap .ui_rule p:first-child{border-width:3px;}
+.ui_wrap .ui_rule i{display:block;width:122px;height:25px;float:left;background-repeat:no-repeat;background-position:47px 3px;}
+.ui_wrap .right .ui_rule i{width:105px;background-repeat:no-repeat;background-position:50px 1px;}
+.ui_wrap .ui_rule span{height:25px;line-height:25px;text-align:center;display:block;float:left;width:128px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.ui_wrap .right{border:2px solid #ddd;float:left;width:355px;height:690px;border-radius:10px;padding:0 10px;}
+.ui_wrap .introduce{width:200px;height:100px;padding:10px 30px;margin:0;}
+.ui_wrap .right .ui_rule span{width:122px;}
+.clear{clear:both;}

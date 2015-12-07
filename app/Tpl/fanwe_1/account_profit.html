@@ -1,0 +1,57 @@
+{include file="inc/header.html"} 
+{include file="inc/home_user_info.html"}
+<!--中间开始-->
+<div class="dlmain Myhomepage">
+	{include file="inc/account_left.html"}
+	<div class="homeright pageright f_r">
+		<div class="account_money">
+			<div class="list_title clearfix">
+				<div {if $all eq 0}class="cur"{/if}>
+					<span>推广收益明细</span>
+				</div>
+			</div>
+			<div><strong>应得收益：</strong><span class="f_red">{if $total_profit gt 0}{$total_profit}{else}0{/if}</span></div>
+			<div><strong>已得收益：</strong><span class="f_red">{if $sent_profit gt 0}{$sent_profit}{else}0{/if}</span></div>
+			<div class="list_conment">
+				{if $profit_user_list}
+				<div class="i_deal_list clearfix">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table">
+						<tbody>
+							<tr>
+								<th>编号</th>
+								<th>金额(元)</th>
+								<th width="120">用户名</th>
+								<th width="160">项目名</th>
+								<th>是否发放</th>
+							</tr>
+							{foreach from=$profit_user_list item=profit_user_item}
+							<tr>
+								<td class="deal_name" style="text-align:center;">{$profit_user_item.id}</td>
+								<td>{$profit_user_item.amount}</td>
+								<td>
+									<span class="f_money b">{function name="get_user" v=$profit_user_item.user_id}</span>
+								</td>
+								<td>{function name="get_deal" v=$profit_user_item.deal_id}</td>
+								<td>{if $profit_user_item.status eq 1}已发放{else}未发放{/if}</td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+				<div class="blank20"></div>
+				<div class="pages">{$pages}</div>
+				<div class="blank20"></div>
+				{else}
+				<div class="empty_tip">
+					还没有收益记录
+				</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+		
+<!--中间结束-->
+<div class="blank"></div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

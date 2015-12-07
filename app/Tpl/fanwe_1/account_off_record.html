@@ -1,0 +1,91 @@
+{include file="inc/header.html"} 
+{include file="inc/home_user_info.html"}
+<!--中间开始-->
+<div class="dlmain Myhomepage">
+ 	{include file="inc/account_left.html"} 
+ 	<div class="homeright pageright f_r">
+		<div class="account_money">
+			<div class="list_title clearfix">
+				<div {if $module eq 'account'&& $action eq 'money_inchange'}class="cur"{/if}>
+					<a href="{url r="account#money_inchange"}">我要充值</a>
+				</div>
+				<div {if $module eq 'account'&& ($action eq 'record'||$action eq 'pay')}class="cur"{/if}>
+					<a href="{url r="account#record"}">在线充值日志</a>
+				</div>
+				<div {if $module eq 'account'&& ($action eq 'off_record')}class="cur"{/if}>
+					<a href="{url r="account#off_record"}">线下充值日志</a>
+				</div>
+			</div>
+			<div class="list_conment">
+				<div class="ui_button theme_bgcolor mr20">
+					<span>已充值总额：{function name="format_price" v=$pay_money}</span>
+				</div>
+				<div class="ui_button bg_red">
+					<span>可用资金：{function name="format_price" v=$total_money }</span>
+				</div>
+				<div class="blank20"></div>
+				{if $off_pay_list}
+				<div class="i_deal_list clearfix">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table">
+						<tbody>
+							<tr>
+								<th>线下充值订单号</th>
+								<th>用户名</th>
+								<th>用户联系电话</th>
+								<th>用户银行</th>
+								<th>支付方式</th>
+								<th>充值金额</th>
+								<th>创建时间</th>
+								<th>最新更新时间</th>
+								<th>状态</th>		
+							</tr>
+							{foreach from=$off_pay_list item=off_pay_list_item}
+							<tr>
+								<td>
+									{$off_pay_list_item.id}
+								</td>
+								<td>
+									{$off_pay_list_item.user_name}
+								</td>
+								<td>
+									<span class="f_money b">{$off_pay_list_item.user_phone}</span>
+								</td>
+								<td>
+				                   {$off_pay_list_item.user_account}
+								</td>
+								<td>
+				                   {$off_pay_list_item.user_bank}
+								</td>
+								<td>
+				                   {$off_pay_list_item.amount}
+								</td>
+								<td>
+				                   {function name="to_date" v=$off_pay_list_item.create_time}
+								</td>
+								<td>
+				                   {function name="to_date" v=$off_pay_list_item.last_update}
+								</td>
+								<td>
+                                   {function name="get_off_status" v=$off_pay_list_item.status}
+								</td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+				<div class="blank20"></div>
+				<div class="pages">{$pages}</div>
+				<div class="blank20"></div>
+				{else}
+				<div class="empty_tip">
+					还没有任何充值记录
+				</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+ 	<!--中间结束-->
+	<div class="blank"></div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

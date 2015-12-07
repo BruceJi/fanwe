@@ -1,0 +1,54 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function show_content(id)
+	{
+		$.weeboxs.open(ROOT+'?m=DealMsgList&a=show_content&id='+id, {contentType:'ajax',showButton:false,title:LANG['SHOW_CONTENT'],width:600});
+	}
+	function send(id)
+	{
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=send&id="+id, 
+				data: "ajax=1",
+				success: function(msg){
+					alert(msg);
+				}
+		});
+	}
+	
+</script>
+<div class="main">
+<div class="main_title">平台券的明细</div>
+<div class="blank5"></div>
+<div class="button_row">
+    <input type="button" id="add_button" class="button" value="{%ADD}" onclick="add();">	
+	<!-- <input type="button" id="reset_sending" class="button" value="{%CANCEL_SENDING}" onclick="reset_sending('DEAL_MSG_LOCK');" /> -->
+</div>
+<div class="blank5"></div>
+
+<div class="blank5"></div>
+<!-- Think 系统列表组件开始 -->
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="msg" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|40px
+	,ticket_type|get_ticket_type:券的类型
+	,money:金额
+	,rest_quantity:剩余数量
+	,create_time|to_date:{%CREATE_TIME}|120px
+	,start_use|to_date:活动开始时间
+	,deadline|to_date:活动截止时间
+	,is_desposit|get_is_send:提现|50px
+	,status|get_status:券的可用状态
+	,use_time:券的可用天数(天)|100px" 
+	 /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

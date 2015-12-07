@@ -1,0 +1,3 @@
+<?php
+//000000086400a:10:{s:14:"platform_appid";s:5:"appid";s:14:"platform_token";s:5:"token";s:23:"platform_encodingAesKey";s:13:"symmetric_key";s:15:"platform_status";s:1:"0";s:18:"platform_appsecret";s:1:"0";s:32:"platform_component_verify_ticket";s:1:"0";s:31:"platform_component_access_token";s:1:"0";s:22:"platform_pre_auth_code";s:1:"0";s:38:"platform_component_access_token_expire";s:1:"0";s:29:"platform_pre_auth_code_expire";s:1:"0";}
+?>

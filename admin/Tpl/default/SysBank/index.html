@@ -1,0 +1,36 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function dele(id){
+		location.href = ROOT+"?m=SysBank&a=dele&id="+id;
+	}
+</script>
+<div class="main">
+<div class="main_title">平台账户</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<!-- <input type="button" class="button" value="{%DEL}" onclick="foreverdel();" /> -->
+</div>
+<php>
+	
+</php>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal"  
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,bank_name:银行名称
+		,account:银行账号 |25%
+		,sys_name:开户姓名" 
+	actionlist="edit:{%EDIT},dele:删除" 
+	actionwidth="100px"/> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

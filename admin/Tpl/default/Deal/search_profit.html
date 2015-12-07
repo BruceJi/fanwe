@@ -1,0 +1,122 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_refund($id,$deal)
+	{
+		if($deal['is_success']==0&&$deal['end_time']<get_gmtime()&&$deal['end_time']!=0)
+		{
+ 			return "<a href='javascript:void(0);' onclick=\"if(confirm('是否确认退款')){window.location.href='".u("Deal/batch_refund",array("id"=>$id))."';} \" >批量退款</a>";
+		}
+	}
+	function get_edit($id,$deal){
+ 		if($deal['type']==1){
+			return "<a href=\"javascript:edit_investor_index('".$id."')\">编辑</a>";
+		}else{
+			return "<a href=\"javascript:edit_index('".$id."')\">编辑</a>";
+		}
+	}
+	function get_pay_list($id,$deal){
+		if($deal['type']==1){
+			return "<a href=\"javascript:get_pay_list('".$id."')\">投资列表</a>";
+		}else{
+			return "<a href=\"javascript:get_pay_list('".$id."')\">支持列表</a>";
+		}
+	}
+	function get_item($id,$deal){
+ 		if($deal['type']==1){
+			return "";
+		}else{
+			return "<a href=\"javascript:deal_item('".$id."')\">子项目</a>";
+		}
+	}
+	function get_level($level){
+		$user_level = $GLOBALS['db']->getOne("select `name` from ".DB_PREFIX."deal_level where id = '".intval($level)."'");
+		return $user_level;
+	}
+	function edit_new($name,$id){
+		$deal=$GLOBALS['db']->getOne("select type from ".DB_PREFIX."deal where id=$id ");
+ 		if($deal['type']==1){
+			return "<a href=\"javascript:edit_investor('".$id."')\">$name</a>";
+		}else{
+			return "<a href=\"javascript:edit('".$id."')\">$name</a>";
+		}
+	}
+</PHP>
+<script>
+	//编辑跳转
+function edit_1(id)
+{
+	location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=edit_investor&id="+id;
+}
+function get_pay_list(id){
+	location.href = ROOT+"?"+VAR_MODULE+"=DealOrder&"+VAR_ACTION+"=get_pay_list&deal_id="+id;
+}
+function edit_index(id)
+{
+	location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=edit&id="+id;
+}
+function edit_investor_index(id)
+{
+	location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=edit_investor&id="+id;
+}
+function set_success(id)
+{
+    location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=set_success&id="+id;	
+}
+function pay_profit(id)
+{
+    location.href = ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=pay_profit&id="+id;
+}
+function pay_user_profit(id)
+{
+	location.href =  ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=pay_user_profit&id="+id;
+}
+</script>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<div class="main">
+<div class="main_title">上线项目</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="批量发放" onclick="batch_pay();" />
+</div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%USER_NAME}：<input type="text" class="textbox" name="user_name" value="{:trim($_REQUEST['user_name'])}" style="width:100px;" />
+		是否发放收益:<select name="status">			
+				<option value="1" <if condition="$_REQUEST['status'] eq 1">selected="selected"</if>>已发放</option>
+				<option value="0" <if condition="$_REQUEST['status'] eq 0">selected="selected"</if>>未发放</option>				
+			 </select>
+		<!--定位action的具体方法-->
+		<input type="hidden" value="Deal" name="m" />
+		<input type="hidden" value="search_profit" name="a" />
+		<input type="hidden" value="{$deal_id}" name="id">
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|40px
+		,type|get_type_name:类型|50px
+		,deal_id|get_deal_name:项目名称|80px	
+		,user_id|get_deal_user:用户|50px
+		,amount:发放金额|50px
+		,status|get_status:发放|30px" 
+	 actionlist="pay_user_profit:发放用户收益"
+/> 
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

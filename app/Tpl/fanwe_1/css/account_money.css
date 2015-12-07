@@ -1,0 +1,136 @@
+/**
+
+支付css
+
+	*/
+.ui_payway{width: 223px}
+#ui_alipayhandDiv{margin-left:30px;}
+.alipayhand p,.alipayhand li{margin-top:10px;}
+#ui_tips2bank li{margin-left:30px;}
+#ui_alipayhandDiv .button-blue1{line-height: 40px;cursor: pointer;color: #FFF !important;font-size: 16px;text-align: center;background-color:#3d9eeb; 
+    width: 250px;
+	height: 40px;
+	display: block;
+	border-radius: 3px;
+	margin-left:70px;
+	margin-top:30px;
+}
+#ui_alipayhandDiv .ui_back{margin-left:25px;line-height: 24px;cursor: pointer;color: #FFF !important;font-size: 14px;text-align: center;background-color:#3d9eeb;width:100px;height:24px;border-radius:5px;}
+#ui_promot{
+	background:#fff;
+	border-radius: 0 0 5px 5px;
+	width: 303px;
+	height: 150px;
+}
+#ui_promot h4{
+	border-bottom:1px solid #ccc;
+	background:#0b5d8c;
+	color:#fff;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+#ui_promot a{
+	display: block;
+	float: left;
+	margin-left: 60px;
+	height: 30px;
+	width: 60px;
+	background: #0b5d8c;
+	color: #FFF;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 44px;
+	border-radius: 3px;
+}
+#pay_btn{margin-left:98px;line-height: 40px;cursor: pointer;color: #FFF !important;text-align: center;background-color:#3d9eeb;width:100px;height:40px;border-radius:5px;}
+/*汇款单确认开始*/
+.blankRemittance{
+	width:690px;
+	padding-left:20px;
+	padding-top:10px;
+}
+
+.blankRemittance .topTitle{
+	font-size:20px;
+	color:#999999;
+	padding-bottom:10px;
+	display:inline-block;
+	font-weight:700;
+}
+
+.blankRemittance ul{
+	padding-left:20px;
+}
+
+.blankRemittance ul li{
+	height:35px;
+	line-height:35px;
+}
+
+.blankRemittance ul li span.c1{
+	display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+.blankRemittance ul li span.c2{
+    font-size: 14px;
+    font-weight: 700;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.blankRemittance ul li span input.blankInformation{
+	height:25px;
+	width:220px;
+}
+
+.blankRemittance .returnbackground{
+	color:#333333;
+	padding-left:20px;
+	float:left;
+	display:inline-block;
+	line-height:60px;
+}
+
+.blankRemittance ul li span label{
+	padding-left:20px;
+}
+
+.blankRemittance .bankRechargeSucess{
+	background: url("/static/front/images/new_v1/successIcon.png") no-repeat 1px 1px scroll transparent;
+	padding-top:65px;
+	width:70px;
+	float:left;
+	height:100%;
+}
+.blankRemittance input{border:1px solid #ccc;}
+.blankRemittance .buttonblue3{line-height: 40px;cursor: pointer;color: #FFF !important;font-size: 16px;text-align: center;background-color:#3d9eeb; 
+    width: 90px;
+	height: 40px;
+	display: block;
+	border-radius: 3px;}
+.blankRemittance .bankRechargeSucess{
+	background: url("../images/money_pay/successIcon.png") no-repeat 1px 1px scroll transparent;
+	padding-top:65px;
+	width:70px;
+	float:left;
+	height:100%;
+}
+/*汇款单确认结束*/
+/*充值记录页面开始*/
+.entrustTen .Tentitle{
+	font-size:14px;
+	font-weight:700;
+	padding:15px 0 10px 5px;
+}
+.entrustTen table{border:0px solid #3D9EEB;}
+.entrustTen table th{background:#3D9EEB;height:40px;line-height:30px;color:#fff;text-align:center;}
+.entrustTen table tr:nth-child(even){background:#f5f5f5;}
+.entrustTen table tr:nth-child(odd){background:#fbfbfb;}
+.entrustTen table tr:hover{background:#ddd;}
+.entrustTen table td{text-align: center;color:#666;font:12px arial verdana;padding: 20px 10px;}
+.entrustTen table td a{text-decoration: none;color:#3d9eeb;}
+
+/*充值记录页面结束*/

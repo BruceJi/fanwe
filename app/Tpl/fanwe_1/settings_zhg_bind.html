@@ -1,0 +1,92 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajaxupload.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+?>
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<script type="text/javascript">
+    var ROOT = '{$APP_ROOT}/m.php';
+    var VAR_MODULE = "m";
+    var VAR_ACTION = "a";
+    var WEB_SESSION_ID = '<?php echo es_session::id(); ?>';
+    var EMOT_URL = '{$APP_ROOT}/public/emoticons/';
+    var MAX_FILE_SIZE = "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+    var UPLOAD_URL ='{$APP_ROOT}/index.php?ctl=avatar&act=upload&uid={$user_info.id}' ;
+	var UPLOAD_SWF='{$TMPL}/js/plupload/Moxie.swf';
+	var UPLOAD_XAP='{$TMPL}/js/plupload/Moxie.xap';
+	var ALLOW_IMAGE_EXT= "gif,jpg,jpeg,png,bmp";
+	var MAX_IMAGE_SIZE= "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+	function get_file_fun(name){
+		$("#"+name).ui_upload({multi:false,
+			FileUploaded:function(ajaxobj){
+				if(ajaxobj.status!=1)
+				{
+					$.showErr(ajaxobj.message);
+				}else{
+					 $("#avatar").attr("src",ajaxobj.middle_url+"?r="+Math.random());
+	 				}
+			},Error:function(error){
+				$.showErr(error.message);
+ 			}
+ 		});
+	}
+</script>
+<style>
+	.tip_box{height:41px;line-height:41px;}
+	.tip_box .form_tip{color:red;}
+	.tip_box .form_success{color:green;}
+	.control-group .select_lable{height:37px;line-height:37px}
+	.left{width:650px}
+	.control-group .control-label{width:100px;}
+	.control-group .control-label .cate_note{font-size:12px;line-height:14px;color:#999;}
+	.control-group .radio_lable{height:auto;}
+</style>
+{include file="inc/home_user_info.html"}
+<!--中间开始-->
+<div class="dlmain Myhomepage">
+	{include file="inc/account_left.html"} 
+	<div class="homeright pageright f_r">
+		<div class="list_title clearfix">
+			<div class="cur">
+				<span><a href="http://www.zhgtrade.com" target="_blank">{$page_title}</a></span>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<div class="left">
+			<div class="control-group">
+				<div class="control-text">
+					<span>请务必正确绑定众股平台账号，方便将产品数字权益移往<a href="http://www.zhgtrade.com"  style="color:red;" target="_blank">众股交易平台</a>进行交易。</span>
+				</div>
+				<div class="blank0"></div>
+			</div> 
+			<form class="ajax_form" action="{url r="settings#save_zhg_bind"}" id="zhg_bind_form" >			
+				<div class="control-group">
+					<label class="control-label">众股用户ID:</label>
+					<div class="control-text">
+						<input type="text" value="{$zhg_id}" class="textbox" name="zhg_id" />
+					</div>
+					<div class="blank0"></div>
+				</div> 
+				<div class="control-group">
+					<label class="control-label">众股用户名:</label>
+					<div class="control-text">
+						<input type="text" value="{$zhg_name}" class="textbox"  name="zhg_name"/>
+					</div>
+					<div class="blank0"></div>
+				</div> 
+				<div class="submit_btn_row control-group">
+					<label class="control-label"></label>
+					<input type="button" value="保存设置" class="ui-button theme_bgcolor" /> 
+					<input type="hidden" value="1" name="ajax">
+				</div>
+			</form>
+		</div>   
+	</div>
+	<div class="blank"></div>
+</div>
+<!--中间结束-->
+<div class="blank"></div>
+<script> 
+</script>
+{include file="inc/footer.html"} 
