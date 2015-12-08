@@ -1,0 +1,90 @@
+/**
+	2015-12-7 author:yujie
+*/
+/*重重方维原有css*/
+.left{padding:0;}
+div{margin:0;}
+/*banner开始*/
+.yj_banner .banner{margin:0 auto;position:relative;height:450px;overflow: hidden;}
+.yj_banner .banner ul li{width:100%;}
+#pic a{width:100%;height:450px;display:block;}
+.hd{position:absolute;bottom:20px;left:50%;z-index:2;}
+#cir{margin-left:-63px;}
+#cir li{float:left;cursor:pointer;width:12px;height:12px;background:#fff;border-radius: 9px;margin:6px;}
+#cir li.on{border:2px solid #fff;background:none;margin-top: 3px;width: 13px;height: 13px;}
+/*.information{position:absolute;right:0px;top:-438px;width:316px;z-index:2;}
+.information .show_some{height:100px;margin-top:5px;}
+.information .icon{width:50px;height:50px;margin:24px;float:left;background:url(../images/index/index_icon.png);}
+.information .desc{width:200px;margin-left:10px;height:100px;float:left;}
+.information .desc .num{font-size:24px;color:#dd6204;margin-top:16px;}
+.information .desc .txt{font-size:18px;color:#fff;}
+.yy{background:#000;opacity:0.5;filter:alpha(opacity=50);}
+.shadow{position:absolute;right:0px;top:-438px;width:316px;z-index:1;}
+.shadow .show_project{width:316px;height:100px;margin-top:5px;}
+.zcfunding_data{width:1200px;position:relative;margin:0 auto;}*/
+/*banner结束*/
+/*网站数据开始*/
+.net_data{width:1200px;text-align:center;margin:0 auto;height:230px;}
+.net_data .items{width:298px;height:230px;float:left;}
+.net_data .items .icon{width:82px;height:82px;margin:40px auto 0;}
+.net_data .items .data{height:70px;border-right:4px solid #ccc;margin-top:10px;}
+.net_data .items .last{border-right:0;}
+.net_data .items .data .name{font-size:14px;height:20px;line-height:20px;}
+.net_data .items .data .value{font-size:40px;color:#ff7e00;height:50px;line-height:50px;}
+/*网站数据结束*/
+/*网站中部开始*/
+.yj_center {width:1200px;margin:0 auto;}
+/*专题项目开始*/
+.yj_center .special_pro .items{margin-top:25px;border-top:3px dotted #ccc;}
+.yj_center .special_pro .items .item{height:300px;margin:30px 0;}
+.yj_center .special_pro .items .item .right{width:349px;padding:30px 25px 0 25px;border-width:1px 1px 1px 0px;border-color:#ccc;border-style: solid;height:268px;}
+.yj_center .special_pro .right .content{font-size:14px;}
+.yj_center .special_pro .right .content .title{font-size:22px;}
+.yj_center .special_pro .right .change_row{padding-left:50px;}
+.yj_center .special_pro .right .content .time{margin:35px 0 15px 0;}
+.yj_center .special_pro .progress_bar{height:8px;margin-top:10px;overflow:hidden;}
+.yj_center .special_pro .percent{height:8px;}
+.special_pro .details{height:60px;margin-top:10px;}
+.special_pro .details .pro{width:112px;text-align:center;height:60px;border-right:1px solid #ccc;line-height:30px;}
+.special_pro .details .pro_last{border:none;}
+.yj_center .special_pro .left{position:relative;width:800px;}
+.yj_center .special_pro .left .shadow,.yj_center .special_pro .left .content{width:800px;height:300px;position:absolute;top:0;left:0;}
+.yj_center .special_pro .left .content div{margin-bottom:30px;}
+.yj_center .special_pro .left .content .open{text-align:center;font-size:20px;color:#fff;height:45px;line-height:45px;width:170px;background:#094965;}
+.yj_center .special_pro .left .content .title{font-size:40px;margin-left:50px;}
+.yj_center .special_pro .left .content .desc{font-size:20px;margin-left:430px;}
+/*专题项目结束*/
+/*推荐项目开始*/
+.recommend_pro .items{margin-top:25px;border-top:3px dotted #ccc;padding-bottom:30px;}
+.recommend_pro .items:after{display:block;content:"";clear:both;}
+.recommend_pro .items ul li{width:590px;height:209px;float:left;margin-top:25px;}
+.recommend_pro .items ul li:nth-child(odd){margin-right:20px;}
+.recommend_pro ul li .right{width:269px;font-size:14px;padding:0px 10px;border-width:2px 2px 2px 0px;border-color:#ccc;border-style:solid;height:205px;border-radius:0 5px 5px 0;}
+.recommend_pro ul li .right .title{font-size:22px;color:#111;}
+.recommend_pro ul li .right .details .pro{width:89px;text-align:center;height:60px;}
+.recommend_pro ul li .right .details:after{content:"";display: block;clear:both;}
+.recommend_pro ul li .right .progress_bar{height:8px;margin-top:10px;overflow:hidden;}
+.recommend_pro ul li .right .percent{height:8px;}
+.recommend_pro ul li .right p{margin-top:13px;}
+.recommend_pro .left{position:relative;width:299px;}
+.recommend_pro .status{width:79px;height:79px;position:absolute;top:0;left:0;}
+
+/*推荐项目结束*/
+/*成功项目开始*/
+.success_pro .items{margin-top:25px;border-top:3px dotted #ccc;padding-bottom:50px;font-size:14px;}
+.success_pro .items:after{display:block;content:"";clear:both;}
+.success_pro .items ul li{width:269px;height:330px;float:left;margin:20px 41px 0px 0px;position:relative;}
+.success_pro .items ul li:nth-child(4n){margin-right:0px;}
+.success_pro .items ul li span{display:block;}
+.success_pro .items ul li .img{width:269px;height:187px;display:block;}
+.success_pro .items ul li .title{font-size:22px;color:#111;}
+.success_pro .items ul li .details .pro{width:89px;text-align:center;height:60px;}
+.success_pro .items ul li .details:after{content:"";display: block;clear:both;}
+.success_pro .items ul li .progress_bar{height:8px;margin-top:10px;}
+.success_pro .items ul li .percent{height:8px;}
+.success_pro .items ul li p{margin-top:13px;}
+.success_pro .items ul li .shadow{width:269px;height:77px;position:absolute;bottom:144px;left:0;}
+.success_pro .items ul li .content{padding:10px;text-indent:28px;width:249px;height:57px;position:absolute;bottom:144px;left:0;color:#fff;overflow:hidden;}
+/*成功项目结束*/
+/*网站中部结束*/
+

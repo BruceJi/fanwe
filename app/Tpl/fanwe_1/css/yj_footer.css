@@ -1,0 +1,43 @@
+/**
+	2015-12-7 author:yujie
+*/
+/*底部开始*/
+.yj_team{border-top:3px solid #00b4ff;}
+.yj_team .img{margin:0 auto;width:228px;}
+.yj_team  .jigou{margin:75px auto;width:1200px;}
+.yj_team  .jigou ul li{margin:14px;float:left;}
+.yj_team  .jigou ul:after{display:block;content:"";clear:both;}
+.yj_link{width:1200px;border:1px solid #ccc;margin:0 auto;height:0px;}
+.yj_link .col{width:400px;border:1px solid #00b4ff;margin:0 auto;}
+.yj_link .link_pic{width:172px;height:71px;text-align:center;margin:-29px 507px;background:#fff;}
+.yj_link .link_pic .link_en{font-size:16px;}
+.yj_link .link_pic .link_zh{font-size:24px;}
+.yj_companys{width:1200px;margin:0 auto;}
+.yj_companys ul{margin:30px 0px;}
+.yj_companys ul:after{display:block;content:"";clear:both;}
+.yj_companys ul li{margin:0 8px 10px 0;float:left;}
+.yj_footer{background:#49505d;color:#fff;}
+.yj_footer a{color:#fff;}
+.yj_footer .f_center{width:1150px;margin:0 auto;padding:25px;height:100px;}
+.yj_footer .f_center .icon{background:url(../images/index/index_icon1.png) no-repeat 1px 1px;width:50px;height:50px;display:block;}
+.yj_footer .f_center .f_left{width:250px;}
+.yj_footer .f_center .f_left .kefu{width:155px;height:50px;font-size:16px;}
+.yj_footer .f_center .f_left .kefu .desc{display: block;line-height:50px;padding-left:20px;}
+.yj_footer .f_center .f_left .kefu .icon{background-position:-87px -78px;}
+.yj_footer .f_center .f_left .tel{width:239px;height:60px;}
+.yj_footer .f_center .f_left .tel .desc{display: block;padding-left:20px;}
+.yj_footer .f_center .f_left .tel .dianhua{font-size:22px;}
+.yj_footer .f_center .f_left .tel .icon{background-position:-87px -160px;}
+.yj_footer .f_right{margin-left:100px;width:800px;}
+.yj_footer .f_right ul li{width:139px;padding-left:60px;border-right:1px solid #ccc;height:110px;float:left;}
+.yj_footer .f_right ul li p:first-child{line-height:50px;font-size:18px;}
+.yj_footer .f_right ul li p{line-height:30px;}
+.yj_footer .f_right ul li.last{border:none;}
+.yj_bottom{height:90px;background:#393d45;color:#fff;overflow:hidden;}
+.yj_bottom a{color:#fff;padding-left:13px;}
+.yj_bottom div{margin:10px auto;width:540px;text-align:center;}
+/*底部结束*/
+/*悬浮客服开始*/
+.yj_service{width:43px;position:fixed;top:700px;left:50%;margin-left:610px;}
+.yj_service a{background:url(../images/index/index_icon1.png) no-repeat;display:block;width:43px;height:43px;margin-top:5px;border-radius:5px;}
+/*悬浮客服结束*/

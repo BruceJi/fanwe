@@ -8,11 +8,11 @@
 <meta name="description" content="{if $page_seo_description neq ''}{$page_seo_description}{else}{$seo_description}{/if}" />
 <title>{if $page_title neq ''}{$page_title} - {/if}{$site_name} - {$seo_title}</title>
 <?php
-$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/yj_common.css";
 $this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanwe_utils/fanweUI.css";
 $this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanwe_utils/weebox.css";
 $this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/common_css/layout.css";
 $this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/common_css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/yj_common.css";
 $this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/yj_header.css";
 if(MODULE_NAME=="licai"){
 	$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/licai.css";
@@ -73,6 +73,79 @@ var __HASH_KEY__ = "{insert name="get_hash_key"}";
 <![endif]-->
 </head>
 <body>
+<!-- <div class="header" id="J_head">
+	<div class="header_top wrap">
+		<div class="logo f_l">
+			<a class="link" href="{$APP_ROOT}/">
+				<?php
+					/*$this->_var['logo_image'] = app_conf("SITE_LOGO");*/
+				?>
+				<img src="{$logo_image}" />
+			</a>
+		</div>
+		
+		操作：去掉项目搜索 
+		2015-11-13 14:41:00   程超 
+
+		<div class="header_search f_l">
+			<form action="{url r="deals"}" method="post" id="header_search_form">
+				{if app_conf("INVEST_STATUS") eq 0} 
+     			<a href="javascript:void(0);" livalue="0" class="search_cate cur" checked="checked">产品众筹</a>
+         		<a href="javascript:void(0);" livalue="1" class="search_cate">股权众筹</a>
+				{/if}
+				{if app_conf("INVEST_STATUS") eq 1}
+				<a href="javascript:void(0);" livalue="0" class="search_cate cur" checked="checked">产品众筹</a>
+				{/if}
+				{if app_conf("INVEST_STATUS") eq 2}
+				<a href="javascript:void(0);" livalue="1" class="search_cate cur" checked="checked">股权众筹</a>
+				{/if}
+				<div class="blank0"></div>	
+				<input type="text" id="header_keyword" name="k" placeholder="搜索项目" class="seach_text">
+				<input type="button" value="搜索" class="seach_submit" id="header_submit" />
+				{if app_conf("INVEST_STATUS") eq 0} 
+					<input type="hidden" name="type" value="0"/>				
+					<input type="hidden" name="redirect" value="1"/>		
+				{/if}
+				{if app_conf("INVEST_STATUS") eq 1}
+					<input type="hidden" name="type" value="0"/>		
+				{/if}
+				{if app_conf("INVEST_STATUS") eq 2}
+					<input type="hidden" name="type" value="1"/>	
+				{/if}
+			</form>	
+        </div>
+         <div class="f_r" style="width:320px;">		
+			{insert name="login_tip"}
+			<div class="blank15"></div>
+			{if app_conf('KF_PHONE')}
+			<div class="hotline tr f_666">
+				客服热线<span class="f24 ml10">{function name="app_conf" v="KF_PHONE"}</span>
+			</div>
+			{/if}
+		</div>
+		<div class="blank0"></div>
+	</div>
+	<div class="header_nav theme_bgcolor">
+		<div class="header_nav_box">
+			<ul class="main_nav f_l">
+				{foreach from=$nav_list item=nav_item}
+				<li class="{if $deal_type}{if $deal_type eq 'gq_type' && $nav_item.u_module eq 'deals' && $nav_item.u_action eq 'index' && $nav_item.u_param eq 'type=1'}current{elseif  $deal_type eq 'product_type' && ($nav_item.current eq 1)}current{elseif  $deal_type eq 'home' && $nav_item.u_module eq 'investor' && $nav_item.u_action eq 'invester_list' }current{elseif  $deal_type eq 'article_type' && $nav_item.u_module eq 'article_cate' && $nav_item.u_action eq ''&& $nav_item.u_param eq '' }current{/if}{else}{if $nav_item.current eq 1}current{/if}{/if}">
+					<a href="{$nav_item.url}"  target="{if $nav_item.blank eq 1}_blank{/if}" title="{$nav_item.name}">{$nav_item.name}</a>	
+				</li>
+				{/foreach}
+			</ul>
+			{if !app_conf("PROJECT_HIDE")}
+			<div class="main_publish f_r">
+				<a href="javascript:check_tg(0);" class="btn_publish"></a>
+				<input type="hidden" name="check_login" value="{$user_info.id}">
+			</div>
+			{/if} 
+			<div class="main_spread f_r">
+				<a href="javascript:check_tg(1);" class="btn_spread"></a> 
+			</div>
+		</div>
+	</div>		
+</div>  -->
 <!-- 头部开始 yujie 2015-12-8-->
 	<div class="yj_header">
 		<div class="head">
@@ -83,8 +156,26 @@ var __HASH_KEY__ = "{insert name="get_hash_key"}";
 					<span>客服热线</span>
 					<span>{function name="app_conf" v="KF_PHONE"}</span>
 				</div>
-				{/if}
-				{insert name="login_tip"}
+				{/if}<!-- 
+				{insert name="login_tip"} -->
+				<!-- <div class="login_reg">
+					<div class="login">
+						<i style="background-position:-72px -126px;"></i>
+						<apan>登录</span>
+					</div>
+					<div class="reg">
+						<i style="background-position:-72px -88px;"></i>
+						<span>注册</span>
+					</div>
+					<div class="about">
+						<i style="background-position:-72px -15px;"></i>
+						<span>关于我们</span>
+					</div>
+					<div class="tuiguang">
+						<i style="background-position:-72px -50px;"></i>
+						<span>我要推广</span>
+					</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="flow" id="top_nav">
@@ -99,6 +190,14 @@ var __HASH_KEY__ = "{insert name="get_hash_key"}";
 				</div>
 				<div class="top_nav">
 					<ul>
+						<!-- <li class="sel"><a href="javascript:void(0);">首页</a></li>
+						<li><a href="javascript:void(0);">币创投</a></li>
+						<li><a href="javascript:void(0);">回报众筹</a></li>
+						<li><a href="javascript:void(0);">大电影众筹</a></li>
+						<li><a href="javascript:void(0);">企业众筹</a></li>
+						<li><a href="javascript:void(0);">权益交易</a></li>
+						<li><a href="javascript:void(0);">投资人</a></li>
+						<li><a href="javascript:void(0);">活动|咨询</a></li> -->
 						{foreach from=$nav_list item=nav_item}
 						<li class="{if $deal_type}{if $deal_type eq 'gq_type' && $nav_item.u_module eq 'deals' && $nav_item.u_action eq 'index' && $nav_item.u_param eq 'type=1'}current{elseif  $deal_type eq 'product_type' && ($nav_item.current eq 1)}current{elseif  $deal_type eq 'home' && $nav_item.u_module eq 'investor' && $nav_item.u_action eq 'invester_list' }current{elseif  $deal_type eq 'article_type' && $nav_item.u_module eq 'article_cate' && $nav_item.u_action eq ''&& $nav_item.u_param eq '' }current{/if}{else}{if $nav_item.current eq 1}current{/if}{/if}">
 							<a href="{$nav_item.url}"  target="{if $nav_item.blank eq 1}_blank{/if}" title="{$nav_item.name}">{$nav_item.name}</a>	
@@ -113,6 +212,7 @@ var __HASH_KEY__ = "{insert name="get_hash_key"}";
 						<span>发起众筹</span>
 					</a>
 					<input type="hidden" name="check_login" value="{$user_info.id}">
+					<!-- <img alt="发布众筹" width="125" height="48"  src="images/index/publish.png" title="发布众筹"/> -->
 				</div>
 				{/if}
 			</div>
