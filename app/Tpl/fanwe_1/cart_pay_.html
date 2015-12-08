@@ -96,6 +96,39 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay_tg.js";
 						<div class="blank0"></div>
 					</div>
 	 				{/if}
+	 				<!-- {if $coin_pay_type}
+					<div class="blank10"></div>
+					<div class="control-group">
+						<label class="control-label pay_label">
+							<span class="ui_check f_l mt10" type="radio" rel="score_check">
+								<input type="checkbox" name="score_check" value="0" />
+							</span>
+						</label>
+						<div class="control-text">
+							<span class="f_l mr10 f20">使用数字货币支付:</span>
+						</div>
+						<div class="blank0"></div>
+					</div>
+					<div class="control-group">
+						<ul>
+                           <li>		
+						      {foreach from=$coin_pay_type item=item}
+						        <label class="control-label pay_label">
+							      <span class="ui_check f_l mt10" type="radio" rel="score_check">
+								   <input type="checkbox" name="score_check" value="0" />
+							      </span>
+						        </label>
+							    <div class="control-text">
+								   <input type="hidden" name="coin_id" value="{$item.id}">
+		                           <span class="f_l mr10 f20">使用{$item.pay_name}:</span>
+		                           <input type="text" class="textbox pay_textbox" name="coin" id="pay_coin" onkeyup="change_rate(this)"/>
+		                           抵用&nbsp;<span class="f_money">¥<span id="score_trade_money" name="trade">0</span></span>
+		                       </div>
+                          </li>	  
+						{/foreach}
+						</ul>
+					</div>
+	 				{/if} -->
 					<input type="hidden" name="max_pay" value="{$deal_item.total_price}" />
 					<div class="blank10"></div>
 	 				{$payment_html}
@@ -344,6 +377,20 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay_tg.js";
 		});
 		
 	});
+
+/*    function change_rate(obj){
+    	var item_div = $(obj).closest("div");
+    	var coin_item_id = item_div.find("input[name=coin_id]").val();
+    	var coin_num = $(obj).val();
+    	$.ajax({
+    		url:APP_ROOT+"/index.php?ctl=cart&act=coin_toRate",
+    		type:"post",
+    		data:{id:coin_item_id,coin_num:coin_num},
+    		success:function(data){
+                 item_div.find("span[name=trade]").html(data);
+    		}
+    	});
+    }*/
  
 	
 	function count_total_money(pay_money,pay_score,pay_score_money,total)

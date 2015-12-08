@@ -47,6 +47,7 @@
 			<span class='tip_span'>推荐765*317图片</span>
 		</td>
 	</tr>
+	
 	<tr>
 		<td class="item_title">详情页海报图:</td>
 		<td class="item_input">
@@ -161,7 +162,7 @@
 	</tr>
     <tr id="add_coin">
 		<td class="item_title">增加支持币种:</td>
-		<td><input type="button" class="button" value="新增币种" id="add_button"></td>		
+		<td><input type="button" class="button" value="新增币种" id="add_button"><input type="hidden" value="{$vo.id}" id="deal_id"></td>		
     </tr>
     <script type="text/javascript">
         $("#add_button").bind("click",function(){
@@ -174,30 +175,83 @@
      		success:function(data){
                 var $data=$.parseJSON(data);
                 var html="<tr><td class='item_title'>支持币种</td>"+
-                "<td><select name='pay_type'>";
+                "<td><select class='pay' name='pay_type'>";
 			    var len=$data.length;
 			    for(var i =0;i<len;i++){
                   html+="<option value='"+$data[i].id+"' name='pay_type'>"+$data[i].pay_name+"</option>";
 			    } 
-			    html+="</select>  支付比例:<input type='text' class='textbox'> 最大转换额度:<input type='text' class='textbox'>  单个用户最大支付额度:<input type='text' class='textbox'> <input type='button' class='button' value='确定' onclick='coin_ajax()'>   <input type='button' class='button' value='删除'></td></tr>";
+			    html+="</select>  支付比例:<input type='text' name='item1' class='textbox'> 最大转换额度:<input type='text' name='item2' class='textbox'>  单个用户最大支付额度:<input type='text' name='item3' class='textbox'> <input type='button' class='button' value='确定' onclick='coin_ajax(this)'></td></tr>";
      		    $(html).insertAfter("#add_coin");
      		}, 
      	});
      }
-     function coin_ajax(){
+     function coin_ajax(obj){
+     	 var coin_item = $(obj).closest("td");
+     	 var deal_id=$("#deal_id").val();
+     	 var sel=coin_item.find(".pay").val();
+     	 var item1=coin_item.find("input[name=item1]").val();
+     	 var item2=coin_item.find("input[name=item2]").val();
+     	 var item3=coin_item.find("input[name=item3]").val();
+         var param = {
+         	 deal_id:deal_id,
+         	 pay_type:sel,
+         	 change_rate:item1,
+         	 limit_use:item2,
+         	 max_use_pay:item3
+         };
      	 $.ajax({
-     	     url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=all_coin",
-             type="post",
+     	     url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=insert_coin_item",
+     	     data:param,
+             type:"post",
              success:function(data){
-                 
-             }
+                 if(data==1){
+                    location.href=location.href;
+                 }
+                 if(data==0){
+                    alert("此项目已经支持该货币");
+                    location.href=location.href;
+                 }
+             },
              error:function(){
-             	
+             	alert("请求超时");
              }
      	 });
      }
 
     </script>
+    <tr>
+       <td class="item_title">项目支出货币类型:</td>
+       <td class="item_input">
+        <ul>
+        <foreach name="pay_type_list" item="pay_type_item">
+          <li>
+          	 <input type="hidden" name="id" class="textbox" value="{$pay_type_item.id}">
+             <input type="text" class="textbox" value="{$pay_type_item.pay_name}">
+             <input type="button" class="button" value="编辑" onclick="coin_edit">
+             <input type="button" class="button" value="删除" onclick="coin_del(this)">
+          </li>
+        </foreach>	
+        </ul>
+       </td>
+	</tr>
+	<script type="text/javascript">
+        function coin_del(obj){
+            var li_item = $(obj).closest("li");
+            var id = li_item.find("input[name=id]").val();
+        $.ajax({
+        	url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=coin_item_del",
+        	type:"post",
+        	data:{id:id},
+        	success:function(data){
+        		alert(data);
+                location.href=location.href;
+        	}
+        });
+        }
+       function coin_edit(id){
+                 
+       }
+	</script>
 <!-- 	<tr>		
       <td class="item_title">支持货币类型:</td>
       <td class="item_input">

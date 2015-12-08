@@ -498,6 +498,15 @@ class cartModule extends BaseModule
 				}
  			}  
  		}*/
+        //方劲
+/*        $coin_pay_type = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."coin_item where deal_id=".$id);
+        for ($i=0; $i <count($coin_pay_type) ; $i++) { 
+        	$pay_type = $coin_pay_type[$i]['pay_type'];
+        	$pay_name = $GLOBALS['db']->getOne("select pay_name from ".DB_PREFIX."coin_type where id=".$pay_type);
+        	$coin_pay_type[$i]['pay_name'] = $pay_name;
+        }
+        $GLOBALS['tmpl']->assign("coin_pay_type",$coin_pay_type);*/
+
  		$buy_right_number = get_zc_right_number($deal_info["id"],intval($GLOBALS['user_info']['id']));
  		$zc_amount = $pay_money/$deal_info["price_per_right"];
  		if($deal_info["zc_amount_limit"]>0 && $zc_amount+$buy_right_number>$deal_info["zc_amount_limit"]){
@@ -947,6 +956,18 @@ class cartModule extends BaseModule
 		}			
 	}
 	
+/*    public function coin_toRate(){
+    	$id = intval($_REQUEST['id']);
+    	$coin_num = floatval($_REQUEST['coin_num']);
+    	$coin_item = $GLOBALS['db']->getRow("select * from ".DB_PREFIX."coin_item where id=".$id);
+    	$rate = $coin_item['change_rate'];
+    	$rate_array = explode(":", $rate);
+    	$rate_num1 = intval($rate_array[0]);
+    	$rate_num2 = intval($rate_array[1]);
+    	$rmb = ($coin_num/$rate_num1)*$rate_num2;
+    	echo $rmb;
+    }*/
+
 	public function jump()
 	{
 		if(!$GLOBALS['user_info'])

@@ -60,8 +60,7 @@
       M("coin_type")->where("id=".$id)->delete();
       if (method_exists ( $this, '_filter' )) {
             $this->_filter ( $map );
-      }
-       
+      }     
       $model = D ("coin_type");
       if (! empty ( $model )) {
           $this->_list ( $model, $map );
@@ -73,17 +72,18 @@
       $id = intval($_REQUEST['id']);
       $status = M("coin_type")->where("id=".$id)->getField("status");
       M("coin_type")->where("id=".$id)->setField("status",($status+1)%2);
-	  $model = D ("coin_type");
-	  if (method_exists ( $this, '_filter' )) {
-          $this->_filter ( $map );
-       }
-       
-	  $model = D ("coin_type");
-	  if (! empty ( $model )) {
-	      $this->_list ( $model, $map );
-	  }
-	      $this->display("index");     
-    }
+      $status = M("coin_type")->where("id=".$id).getField("status");
+      M("coin_item")->where("pay_type=".$id)->setField("status",$status);
+  	  $model = D ("coin_type");
+  	  if (method_exists ( $this, '_filter' )) {
+            $this->_filter ( $map );
+      }
+  	  $model = D ("coin_type");
+  	  if (! empty ( $model )) {
+  	      $this->_list ( $model, $map );
+  	  }
+  	      $this->display("index");     
+      }
  }
 
 ?>

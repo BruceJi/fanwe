@@ -495,7 +495,13 @@ class DealAction extends CommonAction{
 		}
 		$this->assign("region_lv2",$region_lv2);
 		
-		
+		$pay_type_list = M("coin_item")->where("deal_id=".$id)->findAll();
+        for ($i=0; $i <count($pay_type_list) ; $i++) { 
+           $pay_type = $pay_type_list[$i]['pay_type'];
+           $pay_type_list[$i]['pay_name'] = $GLOBALS['db']->getOne("select pay_name from ".DB_PREFIX."coin_type where id=".$pay_type);
+        }
+		$this->assign("pay_type_list",$pay_type_list);
+
 		if($region_pid>0)
 		{
 			$region_lv3 = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."region_conf where pid = ".$region_pid." order by py asc");  //三级地址
@@ -519,12 +525,39 @@ class DealAction extends CommonAction{
 		$user_level = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."user_level order by level ASC");
 		$this->assign("user_level",$user_level);
 		
-		$this->display ();
+		$this->display();
+	}
+
+	public function coin_item_del(){
+		$id = intval($_REQUEST['id']);
+		M("coin_item")->where("id=".$id)->delete();
 	}
     
     public function all_coin(){
-    	$coin_name = $GLOBALS['db']->getAll("select pay_name from ".DB_PREFIX."coin_type ");
+    	$coin_name = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."coin_type ");
     	echo json_encode($coin_name);
+    }
+
+    public function insert_coin_item(){
+    	$deal_id = intval($_REQUEST['deal_id']);
+    	$pay_type = intval($_REQUEST['pay_type']);
+    	$change_rate = $_REQUEST['change_rate'];
+    	$limit_user = intval($_REQUEST['limit_user']);
+    	$max_use_pay = floatval($_REQUEST['max_use_pay']);
+
+        $pay_type_list = M("coin_item")->where("deal_id=".$deal_id." and pay_type =".$pay_type)->findAll();
+        if(count($pay_type_list)>0){
+             echo 0;
+        }else{
+	        $coin_item['deal_id'] = $deal_id;        
+	        $coin_item['pay_type'] = $pay_type;
+	        $coin_item['change_rate'] = $change_rate;
+	        $coin_item['limit_use'] = $limit_user;
+	        $coin_item['$max_use_pay'] = $max_use_pay;   
+	        M('coin_item')->add($coin_item);
+	        echo 1;
+        }
+
     }
 
 	public function insert() {
@@ -1572,16 +1605,6 @@ class DealAction extends CommonAction{
 		{
 			$data['is_edit'] = 1;
 		}
-		$ids = $data["pay_type"];
-		$exit_pay_id = M("coin_item")->where("deal_id=".intval($deal_info['id']))->select();
-        for ($i=0; $i <count($ids) ; $i++) { 
-        	$pay_type_id = intval($ids[$i]);        	
-        	$coin_item['pay_type'] = $pay_type_id;
-        	$coin_item['deal_id'] = intval($deal_info['id']);
-            //后期参数需要修改
-            //后期的参数
-            M("coin_item")->add($coin_item);
-        }
 		$list=M(MODULE_NAME)->save ($data);
 
 
