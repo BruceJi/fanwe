@@ -2,8 +2,8 @@
 <div class="login_reg">
 	{if $user_info}
  	<div class="logined fl">
- 		<i style="background-position:-72px -126px;"></i>
 		<a href="javascript:void(0);" id="mycenter" style="">
+ 			<i style="background-position:-72px -126px;"></i>
 			<span class="d_b fl">{function name="msubstr" v=$user_info.user_name b=0 e=10}</span>
 			<s class="icon_arrow icon_arrow_down fl" style="margin:15px 0 0 10px"></s>
 		</a>
@@ -11,6 +11,7 @@
 		
 		<a href="{url r="user#loginout"}" title="退出" id="user_login_out" style="padding: 0 6px; "><i style="background-position:-72px -88px;"></i>退出</a>
 		<a href="javascript:void(0);" id="mymessage" style="padding: 0 6px; ">
+			<i style="background-position:-72px -220px;"></i>
 			<span class="d_b fl">消息</span>
 			<s class="icon_arrow icon_arrow_down fl" style="margin:15px 0 0 10px"></s>
 		</a>
@@ -48,7 +49,7 @@
 	</div>
 	<div class="reg">
 		{if app_conf("USER_INVESTMENT") eq 1}
-		<i style="background-position:-72px -88px;"></i>
+		<i style="background-position:-72px -192px;"></i>
 		<a href="{url r="user#register"}" title="创业者注册" style="padding:0 6px;"><span>创业者注册</span></a><i class="line"></i>
 		<a href="{url r="user#register"}" title="投资者注册" style="padding:0 6px;"><span>投资者注册</span></a>
 		{/if}

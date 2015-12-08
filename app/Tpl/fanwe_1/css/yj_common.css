@@ -19,3 +19,4 @@ a{text-decoration:none;color:#333;}
 .c_yellow{color:#fff600;}
 .yy8{background:#000;opacity:0.8;filte:alpha(opacity=80);}
 .single_line{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.d_b{display:block;}

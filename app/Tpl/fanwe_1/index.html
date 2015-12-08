@@ -17,7 +17,7 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/jquery.Sup
 </style>
 <!-- banner图开始 -->
 <div class="yj_banner">
-	<div class="banner slideBox" >
+	<div class="banner slideBox" id="banner">
 		<div class="bd">
 			<ul id="pic">
 				{foreach from=$image_list item=image_item}
@@ -35,10 +35,10 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/jquery.Sup
 				{/foreach}
 			</ul>
 		</div>
-		<!-- <div class="fy_box" style="">
+		<div class="fy_box" style="">
 			<a class="prev" href="javascript:void(0)"></a>
 			<a class="next" href="javascript:void(0)"></a>
-		</div> -->
+		</div>
 	</div>
 </div>
 	<script type="text/javascript"> 
@@ -49,6 +49,13 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/jquery.Sup
 		}else if($("#pic").find('li').length>1){
 			$("#cir").css("display","block");
 			jQuery(".slideBox").slide({mainCell:".bd ul",delayTime:500,titCell:".hd li",effect:"leftLoop",autoPlay:true,easing:"easeInQuint"});
+			$("#banner").mouseenter(function(){
+				$(this).find(".prev").show();
+				$(this).find(".next").show();
+			}).mouseleave(function(){
+				$(this).find(".prev").hide();
+				$(this).find(".next").hide();
+			});
 		}
 	</script>
 	<!-- banner图结束 -->
@@ -87,31 +94,52 @@ $this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/jquery.Sup
 		<div class="icon"  style="background:url({$TMPL}/images/index/bigicon_01.png) no-repeat;"></div>
 		<div class="data">
 			<p class="name">认筹金额</p>
-			<p class="value">{$virtual_money}</p>
+			<p class="value" id="sum_money">{$virtual_money}</p>
 		</div>
 	</div>
 	<div class="items">
 		<div class="icon" style="background:url({$TMPL}/images/index/bigicon_02.png) no-repeat;"></div>
 		<div class="data">
 			<p class="name">成功项目</p>
-			<p class="value">{$success_sum}</p>
+			<p class="value" id="sum_success">{$success_sum}</p>
 		</div>
 	</div>
 	<div class="items">
 		<div class="icon" style="background:url({$TMPL}/images/index/bigicon_03.png) no-repeat;"></div>
 		<div class="data">
 			<p class="name">在线项目</p>
-			<p class="value">{$virtual_effect}</p>
+			<p class="value" id="sum_online">{$virtual_effect}</p>
 		</div>
 	</div>
 	<div class="items">
 		<div class="icon" style="background:url({$TMPL}/images/index/bigicon_04.png) no-repeat;"></div>
 		<div class="data last">
 			<p class="name">注册会员</p>
-			<p class="value">{$register_sum}</p>
+			<p class="value" id="sum_user">{$register_sum}</p>
 		</div>
 	</div>
 </div>
+<script>
+	$(function(){
+		// 统计数值滚动
+		var options = {
+		    useEasing : true, 
+		    useGrouping : true, 
+		    separator : ',', 
+		    decimal : '.', 
+		    prefix : '', 
+		    suffix : '' 
+		};
+		var sum_money = new countUp("sum_money", 0, {$virtual_money}, 2, 2.5, options);
+		var sum_success = new countUp("sum_success", 0, {$success_sum}, 0, 2.5, options);
+		var sum_online = new countUp("sum_online", 0, {$virtual_effect}, 0, 2.5, options);
+		var sum_user = new countUp("sum_user", 0, {$register_sum}, 0, 2.5, options);
+		sum_money.start();
+		sum_success.start();
+		sum_online.start();
+		sum_user.start();
+	});
+</script>
 <!-- 网站数据结束 -->
 <!-- 中部开始 -->
 	<div class="yj_center">
