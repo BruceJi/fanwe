@@ -33,11 +33,13 @@
 	width:100%;
 }
 .banner .fy_box{
-	position:relative;
-	margin-top:-203px;
-	width:1284px;
-	height:57px;
-	z-index:9;
+	position: absolute;
+	margin-top: -255px;
+	width: 1284px;
+	height: 57px;
+	z-index: 9;
+	left: 50%;
+	margin-left: -642px;
 }
 .banner .prev,.banner .next {
 	filter: alpha(opacity=40);

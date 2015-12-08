@@ -80,7 +80,7 @@ div{margin:0;}
 .success_pro .items ul li .title{font-size:22px;color:#111;}
 .success_pro .items ul li .details .pro{width:89px;text-align:center;height:60px;}
 .success_pro .items ul li .details:after{content:"";display: block;clear:both;}
-.success_pro .items ul li .progress_bar{height:8px;margin-top:10px;}
+.success_pro .items ul li .progress_bar{height:8px;margin-top:10px;overflow:hidden;}
 .success_pro .items ul li .percent{height:8px;}
 .success_pro .items ul li p{margin-top:13px;}
 .success_pro .items ul li .shadow{width:269px;height:77px;position:absolute;bottom:144px;left:0;}
