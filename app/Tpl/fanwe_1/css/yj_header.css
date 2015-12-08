@@ -1,0 +1,32 @@
+*
+	2015-12-7 author:yujie
+*/
+/*头部开始*/
+.yj_header .head{background:#f8f8f8;}
+.yj_header .info{width:1200px;height:30px;color:#666;margin:0 auto;line-height:30px;}
+.yj_header .info .phone{width:250px;height:30px;float:left;}
+.yj_header .info .phone i{background:url(../images/index/index_icon.png) -68px -159px  no-repeat;width:45px;height:30px;display:block;float:left;}
+.yj_header .info .phone span{margin-right:15px;display:block;float:left;height:30px;line-height:30px;}
+.yj_header .info .login_reg{height:30px;float:right;}
+.yj_header .info .login_reg .login,.reg{width:62px;height:30px;float:left;}
+.yj_header .info .login_reg .about{width:91px;height:30px;float:left;}
+.yj_header .info .login_reg .tuiguang{width:83px;height:30px;float:left;}
+.yj_header .info .login_reg i{background:url(../images/index/index_icon.png) no-repeat;display:block;width:25px;height:25px;margin-top:5px;float:left;}
+.yj_header .info .login_reg span{cursor:pointer;dispaly:block;float:left;}
+.yj_header .flow{background:#fff;width:100%;}
+.yj_header .nav{color:#333;font-size:16px;width:1200px;margin:0 auto;height:85px;}
+.yj_header .nav .logo{margin-left:3px;margin-top:9px;}
+.yj_header .nav .logo{width:251px;height:75px; float: left;}
+.yj_header .nav .top_nav{width:790px ;height85px;line-height:85px;float:left;}
+.yj_header .nav .top_nav ul li{padding:0px 19px;height:81px;float:left;}
+.yj_header .nav .top_nav ul li a{display:block;}
+.yj_header .nav .top_nav ul li:hover{border-bottom:4px solid #409eeb;}
+.yj_header .nav .publish{float:right;margin-top:18px;}
+.yj_header .nav .publish a{background:#4eb7ff;display:block;width:120px;height:40px;box-shadow:3px 5px 1px #CCC;border-radius:5px;color:#fff;}
+.yj_header .nav .publish .icon{background:url(../images/index/index_icon1.png) -11px -38px no-repeat;width:25px;height:25px;display:block;float:left;margin:6px 10px;}
+.yj_header .nav .publish span{display:block;padding:8px 10px 0 0;float:left;}
+
+/*已經登陸*/
+.yj_header .logined{height:30px;}
+.yj_header .logined a{display:block;float:left;padding:0 10px;}
+/*头部结束
