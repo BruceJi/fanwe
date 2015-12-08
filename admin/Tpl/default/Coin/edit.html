@@ -1,0 +1,67 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/coin.js' />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("Coin/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">币种名称:</td>
+		<td class="item_input"><input type="text" class="pay_name" name="pay_name" id="pay_name" value="{$coin_type.pay_name}"/></td>
+	</tr>
+	<tr>
+		<td class="item_title">币种描述:</td>
+		<td class="item_input"><input type="text" class="pay_desc" name="pay_desc" id="pay_desc" value="{$coin_type.pay_desc}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">对接钱包参数:</td>
+		<td class="item_input"><input type="text" class="faccess_key" name="faccess_key" id="faccess_key" value="{$coin_type.faccess_key}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">对接钱包参数:</td>
+		<td class="item_input"><input type="text" class="fsecrt_key" name="fsecrt_key" id="fsecrt_key"  value="{$coin_type.fsecrt_key}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">对接钱包IP:</td>
+		<td class="item_input"><input type="text" class="fip" name="fip" id="fip" value="{$coin_type.fip}"  /></td>
+	</tr>
+	<tr>
+		<td class="item_title">对接钱包端口:</td>
+		<td class="item_input"><input type="text" class="fport" name="fport" id="fport" value="{$coin_type.fport}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Coin" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<input type="hidden" name="id" value="{$coin_type.id}">
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<script type="text/javascript">
+	$("#pay_name").off("click").on("click",function(){
+      var pay_name = $("#pay_name").val();
+      alert(pay_name);
+     /*if(pay_name==null||pay_name=""){
+      alert("请输入币种名称");
+     }*/
+});
+</script>
+<include file="Public:footer" />

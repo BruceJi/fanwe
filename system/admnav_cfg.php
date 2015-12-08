@@ -10,6 +10,7 @@ return array(
 				"nodes"	=>	array( 
 					array("name"=>"待办事务","module"=>"Index","action"=>"main"),
 					array("name"=>"平台银行账号","module"=>"SysBank","action"=>"index"),
+					array("name"=>"平台可用币种","module"=>"Coin","action"=>"index"),
 				),
 			),
 			"syslog"	=>	array(

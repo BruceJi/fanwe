@@ -1,3 +1,0 @@
-<?php
-//000000086400a:1:{i:0;a:3:{i:7;a:6:{s:2:"id";s:1:"7";s:5:"image";s:50:"./public/attachment/201511/07/15/563da91a9c671.jpg";s:3:"url";s:0:"";s:4:"sort";s:1:"3";s:5:"title";s:12:"方维众筹";s:4:"type";s:1:"0";}i:5;a:6:{s:2:"id";s:1:"5";s:5:"image";s:50:"./public/attachment/201511/07/15/563da511e4e1c.jpg";s:3:"url";s:0:"";s:4:"sort";s:1:"2";s:5:"title";s:12:"方维众筹";s:4:"type";s:1:"0";}i:8;a:6:{s:2:"id";s:1:"8";s:5:"image";s:50:"./public/attachment/201511/08/12/563ec9efa4083.jpg";s:3:"url";s:0:"";s:4:"sort";s:1:"1";s:5:"title";s:6:"轮播";s:4:"type";s:1:"0";}}}
-?>

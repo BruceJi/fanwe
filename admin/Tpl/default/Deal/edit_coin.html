@@ -10,7 +10,7 @@
 <div class="main_title">{%EDIT} <a href="<if condition="$vo['is_effect'] eq 1">{:u("Deal/online_index")}<else />{:u("Deal/submit_index")}</if>" class="back_list">{%BACK_LIST}</a></div>
 <div class="blank5"></div>
 <form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
-<table class="form conf_tab" cellpadding=0 cellspacing=0 >
+<table id="form1" class="form conf_tab" cellpadding=0 cellspacing=0 >
 	<tr>
 		<td colspan=2 class="topTd"></td>
 	</tr>
@@ -84,7 +84,6 @@
 			<input type="text" class="textbox require" name="end_time" id="end_time" value="{$vo.end_time}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
 			<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
 			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />
-
 		</td>
 	</tr>
 	<tr>
@@ -158,10 +157,61 @@
 		<td class="item_input">
 			<input type="text" class="textbox" name="pay_radio"  value="{$vo.pay_radio}"/>
 			<span class='tip_span'>佣金比例为0的话，按系统的佣金比例0.1来算，不是0的话按这里的佣金比例来算</span>
-		
 		</td>
-		
-	</tr> 
+	</tr>
+    <tr id="add_coin">
+		<td class="item_title">增加支持币种:</td>
+		<td><input type="button" class="button" value="新增币种" id="add_button"></td>		
+    </tr>
+    <script type="text/javascript">
+        $("#add_button").bind("click",function(){
+            ajax();
+        });
+     function ajax(){
+     	$.ajax({
+     		url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=all_coin",
+     		type:"post",
+     		success:function(data){
+                var $data=$.parseJSON(data);
+                var html="<tr><td class='item_title'>支持币种</td>"+
+                "<td><select name='pay_type'>";
+			    var len=$data.length;
+			    for(var i =0;i<len;i++){
+                  html+="<option value='"+$data[i].id+"' name='pay_type'>"+$data[i].pay_name+"</option>";
+			    } 
+			    html+="</select>  支付比例:<input type='text' class='textbox'> 最大转换额度:<input type='text' class='textbox'>  单个用户最大支付额度:<input type='text' class='textbox'> <input type='button' class='button' value='确定' onclick='coin_ajax()'>   <input type='button' class='button' value='删除'></td></tr>";
+     		    $(html).insertAfter("#add_coin");
+     		}, 
+     	});
+     }
+     function coin_ajax(){
+     	 $.ajax({
+     	     url:ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=all_coin",
+             type="post",
+             success:function(data){
+                 
+             }
+             error:function(){
+             	
+             }
+     	 });
+     }
+
+    </script>
+<!-- 	<tr>		
+      <td class="item_title">支持货币类型:</td>
+      <td class="item_input">
+      	<foreach name="coin_type" item="item">
+				<ul>
+                  <li><input type="checkbox" name="pay_type[]" value="{$item.id}">{$item.pay_name}
+                      支付比例:<input type="text" name="" value="">
+                      最大转换额度:<input type="text" name="" value="">
+                      单个用户最大支付额度:<input type="text" name="" value="">
+                  </li>
+				</ul>
+	    </foreach>
+      </td>    
+	</tr> -->
 	<tr>
 		<td class="item_title">总数字权益份额:</td>
 		<td class="item_input">
@@ -182,7 +232,13 @@
 			<input type="text" class="textbox" name="zc_amount_limit"  value="{$vo.zc_amount_limit}"/> 
 			<span class='tip_span'>默认为0；设置为0时，表示不设限制。</span> 
 		</td>
-	</tr> 
+	</tr>
+	<tr>
+        <td class="item_title">用户参与众筹用币兑换的最大次数:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="zc_count_limit"  value="{$vo.per_time}"/> 
+		</td>
+	</tr>  
 	<tr>
 		<td class="item_title">用户参与众筹次数上限:</td>
 		<td class="item_input">
@@ -196,7 +252,6 @@
 			<textarea name="brief" class="textarea">{$vo.brief}</textarea>
 		</td>
 	</tr>
-	
 	<tr>
 		<td class="item_title">项目详情:</td>
 		<td class="item_input">
@@ -246,7 +301,6 @@
 			</select>
 		</td>
 	</tr>
-	
 	<tr>
 		<td class="item_title">项目排序:</td>
 		<td class="item_input"><input type="text" class="textbox" name="sort" value="{$vo.sort}" /></td>
@@ -314,9 +368,11 @@
 		</tr>
 	</table> 		 
 </form>
-
 	
-	<script>
+<script>
+
+     var checkedBox= $("input[name=pay_type]:checked").val();
+
 	 $("input[name=is_effect]").bind("change",function(){
 	 	var value = $("input[name=is_effect]:checked").val();
 			if(value == 1){
@@ -335,7 +391,7 @@
 	  $("#end_time").addClass("require");
 	}
 	<if condition="$vo['is_effect'] eq 0 || $vo['is_effect'] eq 2">remove_require();</if>
-	</script>
+</script>
 	
 </div>
 <include file="Public:footer" />

@@ -509,6 +509,9 @@ class DealAction extends CommonAction{
 			}
 			$this->assign("region_lv3",$region_lv3);
 		}
+
+		$coin_type = M("coin_type")->where("status=1")->findAll();
+		$this->assign("coin_type",$coin_type);
 		
 		$qa_list = M("DealFaq")->where("deal_id=".$vo['id'])->order("sort asc")->findAll();
 		$this->assign("faq_list",$qa_list);
@@ -518,6 +521,12 @@ class DealAction extends CommonAction{
 		
 		$this->display ();
 	}
+    
+    public function all_coin(){
+    	$coin_name = $GLOBALS['db']->getAll("select pay_name from ".DB_PREFIX."coin_type ");
+    	echo json_encode($coin_name);
+    }
+
 	public function insert() {
 		B('FilterString');
 		$ajax = intval($_REQUEST['ajax']);
@@ -1563,7 +1572,18 @@ class DealAction extends CommonAction{
 		{
 			$data['is_edit'] = 1;
 		}
+		$ids = $data["pay_type"];
+		$exit_pay_id = M("coin_item")->where("deal_id=".intval($deal_info['id']))->select();
+        for ($i=0; $i <count($ids) ; $i++) { 
+        	$pay_type_id = intval($ids[$i]);        	
+        	$coin_item['pay_type'] = $pay_type_id;
+        	$coin_item['deal_id'] = intval($deal_info['id']);
+            //后期参数需要修改
+            //后期的参数
+            M("coin_item")->add($coin_item);
+        }
 		$list=M(MODULE_NAME)->save ($data);
+
 
 		if (false !== $list) {
 			if($deal_info['is_effect']!=$data['is_effect']){

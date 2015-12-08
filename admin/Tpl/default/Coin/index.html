@@ -1,0 +1,39 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function dele(id){
+		location.href = ROOT+"?m=Coin&a=dele&id="+id;
+	}
+	function change_status(id){
+		location.href = ROOT+"?m=Coin&a=change_status&id="+id;
+	}
+</script>
+<div class="main">
+<div class="main_title">平台账户</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+</div>
+<php>
+	
+</php>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal"  
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,pay_name:币种名称
+		,pay_desc:币种描述 |25%
+		,status|get_coin_status:是否可用
+		,create_time|to_date:创建时间" 
+	actionlist="edit:{%EDIT},dele:删除,change_status:更改状态" 
+	actionwidth="100px"/> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

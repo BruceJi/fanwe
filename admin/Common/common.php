@@ -90,6 +90,15 @@ function save_log($msg,$status)
 	}
 }
 
+function get_coin_status($status){
+	if($status==1){
+       return "可用";
+	}else{
+		return "禁用";
+	}
+
+}
+
 
 //状态的显示
 function get_toogle_status($tag,$id,$field)
